@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Virtual Museum - Computer Graphics Project</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #000; }
+        canvas { display: block; }
+        /* Simple UI for the user */
+        #instructions {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            background: rgba(0,0,0,0.6);
+            padding: 15px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            border-radius: 8px;
+            pointer-events: none; /* Allows clicking through the text to the canvas */
+        }
+    </style>
+</head>
+<body>
+    <div id="instructions">
+        <strong>Controls:</strong><br>
+        • Click anywhere to Start<br>
+        • WASD to Walk<br>
+        • Mouse to Look Around<br>
+        • ESC to Exit
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { PointerLockControls } from 'three/addons/controls/PointerLockControls.js';
+
+        // ==========================================
+        // 1. SCENE SETUP (The Graphics Layer)
+        // ==========================================
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x151515); // Dark theme for a gallery
+
+        // 2. CAMERA (Perspective Projection)
+        // Parameters: Field of View (75), Aspect Ratio, Near Clip, Far Clip
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 1.6, 5); // Positioned at 1.6 units high (simulating human eye level)
+
+        // 3. RENDERER (The engine that draws the WebGL)
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // ==========================================
+        // 2. INTERACTION & CONTROLS (The User Layer)
+        // ==========================================
+        const controls = new PointerLockControls(camera, document.body);
+
+        // Enter the museum on click
+        document.addEventListener('click', () => {
+            controls.lock();
+        });
+
+        // Key states to track movement
+        const keys = { w: false, a: false, s: false, d: false };
+
+        window.addEventListener('keydown', (e) => { 
+            const key = e.key.toLowerCase();
+            if (keys.hasOwnProperty(key)) keys[key] = true; 
+        });
+
+        window.addEventListener('keyup', (e) => { 
+            const key = e.key.toLowerCase();
+            if (keys.hasOwnProperty(key)) keys[key] = false; 
+        });
+
+        // ==========================================
+        // 3. LIGHTING (Lighting & Shading Models)
+        // ==========================================
+        // Ambient Light: Soft general lighting for all objects
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+        scene.add(ambientLight);
+
+        // Point Light: Simulates a bulb/spotlight on the ceiling
+        const pointLight = new THREE.PointLight(0xffffff, 80);
+        pointLight.position.set(0, 6, 0);
+        scene.add(pointLight);
+
+        // ==========================================
+        // 4. THE ENVIRONMENT (Geometric Transformations)
+        // ==========================================
+        
+        // Floor: A horizontal plane
+        const floor = new THREE.Mesh(
+            new THREE.PlaneGeometry(30, 30),
+            new THREE.MeshStandardMaterial({ color: 0x333333 })
+        );
+        floor.rotation.x = -Math.PI / 2; // Geometric Transformation: Rotation
+        scene.add(floor);
+
+        // Helper function to create Walls
+        function createWall(width, height, x, y, z, rotationY = 0) {
+            const wall = new THREE.Mesh(
+                new THREE.PlaneGeometry(width, height),
+                new THREE.MeshStandardMaterial({ color: 0x666666 })
+            );
+            wall.position.set(x, y, z); // Geometric Transformation: Translation
+            wall.rotation.y = rotationY;
+            scene.add(wall);
+        }
+
+        // Creating the room boundaries
+        createWall(30, 10, 0, 5, -15);          // Back Wall
+        createWall(30, 10, -15, 5, 0, Math.PI/2); // Left Wall
+        createWall(30, 10, 15, 5, 0, -Math.PI/2); // Right Wall
+
+        // ==========================================
+        // 5. ARTWORK (Texture Mapping)
+        // ==========================================
+        
+        // The Frame: A 3D Box
+        const frame = new THREE.Mesh(
+            new THREE.BoxGeometry(4.2, 5.2, 0.2),
+            new THREE.MeshStandardMaterial({ color: 0x2b1d0e }) // Dark wood color
+        );
+        frame.position.set(0, 5, -14.9); // Placed against the back wall
+        scene.add(frame);
+
+        // The Painting: Applying a 2D image to a 3D surface
+        const loader = new THREE.TextureLoader();
+        const painting = new THREE.Mesh(
+            new THREE.PlaneGeometry(4, 5),
+            new THREE.MeshStandardMaterial({ 
+                // Texture Mapping concept applied here:
+                map: loader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/uv_grid_opengl.jpg') 
+            })
+        );
+        painting.position.set(0, 5, -14.79); // Offset slightly to prevent Z-fighting
+        scene.add(painting);
+
+        // ==========================================
+        // 6. THE ANIMATION LOOP (Real-Time Rendering)
+        // ==========================================
+        const moveSpeed = 0.12;
+
+        function animate() {
+            requestAnimationFrame(animate); // Recursively calls itself to create movement
+
+            // Only move if the pointer is locked (user is in the museum)
+            if (controls.isLocked) {
+                if (keys.w) controls.moveForward(moveSpeed);
+                if (keys.s) controls.moveForward(-moveSpeed);
+                if (keys.a) controls.moveRight(-moveSpeed);
+                if (keys.d) controls.moveRight(moveSpeed);
+            }
+
+            // Every frame, draw the scene from the camera's perspective
+            renderer.render(scene, camera);
+        }
+
+        animate(); // Kick off the loop
+
+        // Handle browser window resizing to keep the scene proportions correct
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix(); // Recalculates the perspective projection
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
