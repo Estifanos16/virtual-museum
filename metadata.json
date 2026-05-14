@@ -1,0 +1,6 @@
+{
+  "name": "Interative 3D Virtual Museum",
+  "description": "A high-fidelity 3D virtual museum built with WebGL and Three.js, featuring first-person navigation, interactive artworks, and realistic lighting.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["3D Rendering", "First-Person Controls", "Interactive Art"]
+}
