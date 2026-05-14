@@ -53,7 +53,7 @@ export class MuseumScene {
     this.scene.add(ground);
 
     // Compound Path (Stone/Gravel)
-    const pathGeo = new THREE.PlaneGeometry(6, 80);
+    const pathGeo = new THREE.PlaneGeometry(6, 40);
     const pathMat = new THREE.MeshStandardMaterial({ 
       color: '#555555', 
       roughness: 0.9,
@@ -61,7 +61,7 @@ export class MuseumScene {
     });
     const path = new THREE.Mesh(pathGeo, pathMat);
     path.rotation.x = -Math.PI / 2;
-    path.position.set(0, 0, 0); 
+    path.position.set(0, 0, -30); 
     path.receiveShadow = true;
     this.scene.add(path);
 
