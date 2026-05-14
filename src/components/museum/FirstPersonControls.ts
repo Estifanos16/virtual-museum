@@ -18,6 +18,10 @@ export class FirstPersonControls {
     this.domElement = domElement;
     this.camera.rotation.order = 'YXZ'; // Standard for FPS
 
+    // Start the tour outside the museum, facing the entrance
+    this.camera.position.set(0, 1.7, -25);
+    this.camera.rotation.y = Math.PI; 
+
     const onKeyDown = (event: KeyboardEvent) => {
       switch (event.code) {
         case 'ArrowUp':
