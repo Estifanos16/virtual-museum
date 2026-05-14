@@ -1,8 +1,3 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import * as THREE from 'three';
 import { ARTWORKS, MUSEUM_CONFIG } from '../../constants';
 import { ArtworkData } from '../../types';
