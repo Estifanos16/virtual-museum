@@ -55,9 +55,19 @@ export class FirstPersonControls {
       if (!this.isLocked) return;
       const movementX = event.movementX || 0;
       const movementY = event.movementY || 0;
-      this.camera.rotation.y -= movementX * 0.002;
-      this.camera.rotation.x -= movementY * 0.002;
+      
+      // Further reduced sensitivity for a very controlled look
+      const sensitivity = 0.0008;
+      this.camera.rotation.y -= movementX * sensitivity;
+      this.camera.rotation.x -= movementY * sensitivity;
       this.camera.rotation.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, this.camera.rotation.x));
+    });
+
+    window.addEventListener('blur', () => {
+      this.moveForward = false;
+      this.moveBackward = false;
+      this.moveLeft = false;
+      this.moveRight = false;
     });
   }
 
@@ -116,19 +126,23 @@ export class FirstPersonControls {
   public update(delta: number) {
     if (!this.isLocked) return;
 
-    const friction = 6.0;
-    const speed = 25.0;
-    const playerRadius = 0.5;
+    const friction = 12.0;
+    const speed = 4.5; // Significantly reduced for a very calm walking pace
+    const playerRadius = 0.35;
 
+    // Apply friction/damping
     this.velocity.x -= this.velocity.x * friction * delta;
     this.velocity.z -= this.velocity.z * friction * delta;
 
+    // Calculate move direction
     this.direction.z = Number(this.moveForward) - Number(this.moveBackward);
     this.direction.x = Number(this.moveRight) - Number(this.moveLeft);
     this.direction.normalize();
 
-    if (this.moveForward || this.moveBackward) this.velocity.z -= this.direction.z * speed * delta;
-    if (this.moveLeft || this.moveRight) this.velocity.x -= this.direction.x * speed * delta;
+    // Apply acceleration
+    // We multiply speed by friction to reach the target speed at equilibrium
+    if (this.moveForward || this.moveBackward) this.velocity.z -= this.direction.z * speed * friction * delta;
+    if (this.moveLeft || this.moveRight) this.velocity.x -= this.direction.x * speed * friction * delta;
 
     const prevX = this.camera.position.x;
     const prevZ = this.camera.position.z;

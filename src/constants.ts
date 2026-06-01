@@ -14,42 +14,42 @@ export const MUSEUM_CONFIG = {
 
 export const ARTWORKS: ArtworkData[] = [
   {
-    id: 'art-1-vermeer-pearl',
-    title: 'Girl with a Pearl Earring',
-    artist: 'Johannes Vermeer',
-    year: '1665',
-    description: 'A captivating portrait of a young woman with an enigmatic gaze, wearing a luminous pearl earring against a dark background. This masterpiece exemplifies Vermeer\'s mastery of light and shadow, characteristic of Dutch Golden Age portraiture.',
-    url: 'https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?q=80&w=1000&auto=format&fit=crop',
+    id: 'eth-1-abebe-bikila',
+    title: 'Abebe Bikila',
+    artist: 'Photography',
+    year: '1960',
+    description: 'The legendary Ethiopian marathon runner who won the 1960 Rome Olympics marathon barefoot. He was the first sub-Saharan African to win an Olympic gold medal and remains a global icon of endurance.',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/3/3d/Abebe_Bikila_1960.jpg',
     position: [0, 2.5, -9.5],
     rotation: [0, 0, 0]
   },
   {
-    id: 'art-2-rembrandt-lacemaker',
-    title: 'The Lace Maker',
-    artist: 'Johannes Vermeer',
-    year: '1669',
-    description: 'A delicate study of domestic life and light, showcasing a woman intently focused on her lacework. This painting exemplifies the quiet intimacy and masterful use of natural light that defines Vermeer\'s legacy.',
-    url: 'https://images.unsplash.com/photo-1578321272176-b7bac0429b5a?q=80&w=1000&auto=format&fit=crop',
+    id: 'eth-2-tewodros-ii',
+    title: 'Emperor Tewodros II',
+    artist: 'Historical Illustration',
+    year: 'r. 1855-1868',
+    description: 'A visionary unifier of Ethiopia who sought to modernize the country and defend its sovereignty. His reign marked a crucial turning point in Ethiopian history as he worked to centralize authority and resist colonial pressure.',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/9/9b/Emperor_Tewodros_II.jpg',
     position: [-9.5, 2.5, 5],
     rotation: [0, Math.PI / 2, 0]
   },
   {
-    id: 'art-3-rembrandt-young-woman',
-    title: 'A Young Woman at Her Toilet',
-    artist: 'Rembrandt',
-    year: '1667',
-    description: 'An intimate domestic scene bathed in golden baroque light. Rembrandt\'s masterful handling of chiaroscuro transforms a simple moment of preparation into a meditation on beauty and transience.',
-    url: 'https://images.unsplash.com/photo-1561214115-6d2f1b0609fa?q=80&w=1000&auto=format&fit=crop',
+    id: 'eth-3-menelik-ii',
+    title: 'Emperor Menelik II',
+    artist: 'Historical Photograph',
+    year: 'r. 1889-1913',
+    description: 'The founder of modern Ethiopia, known for his decisive victory at the Battle of Adwa in 1896. This victory preserved Ethiopian independence during the "Scramble for Africa" and made him a symbol of anti-colonial resistance.',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/4/4c/Menelik_II_of_Ethiopia.jpg',
     position: [9.8, 2.5, 10],
     rotation: [0, -Math.PI / 2, 0]
   },
   {
-    id: 'art-4-van-gogh-self',
-    title: 'Self-Portrait with Grey Hat',
-    artist: 'Vincent van Gogh',
-    year: '1887',
-    description: 'Van Gogh\'s penetrating self-examination rendered in bold brushstrokes and vivid colors. This portrait captures both the technical mastery and emotional intensity that defined the Post-Impressionist movement.',
-    url: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1000&auto=format&fit=crop',
+    id: 'eth-4-taytu-betul',
+    title: 'Empress Taytu Betul',
+    artist: 'Historical Photograph',
+    year: 'c. 1900',
+    description: 'A brilliant diplomat and military strategist who played a crucial role in the Battle of Adwa. As the wife of Menelik II, she was a powerful leader in her own right, often overseeing governance and defense strategy.',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Empress_Taytu_Betul.jpg',
     position: [9.8, 2.5, 30],
     rotation: [0, -Math.PI / 2, 0]
   },
@@ -111,6 +111,106 @@ export const ARTWORKS: ArtworkData[] = [
     description: 'A baroque masterpiece featuring dramatic chiaroscuro lighting as Christ calls Matthew to discipleship. Caravaggio\'s revolutionary use of light and shadow creates an atmosphere of divine intervention in an ordinary tavern setting.',
     url: 'https://images.unsplash.com/photo-1578321272176-b7bac0429b5a?q=80&w=1000&auto=format&fit=crop',
     position: [9.8, 2.5, 70],
+    rotation: [0, -Math.PI / 2, 0]
+  },
+  {
+    id: 'art-11-klimt-kiss',
+    title: 'The Kiss',
+    artist: 'Gustav Klimt',
+    year: '1907-1908',
+    description: 'A masterpiece of the Early Modern period, depicting a couple embraced in a field of flowers. Klimt\'s use of gold leaf and intricate patterns creates a sense of luxury and eternal romance.',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/4/44/Klimt_-_The_Kiss.jpg',
+    position: [-9.5, 2.5, 10],
+    rotation: [0, Math.PI / 2, 0]
+  },
+  {
+    id: 'art-12-hokusai-wave',
+    title: 'The Great Wave off Kanagawa',
+    artist: 'Katsushika Hokusai',
+    year: '1831',
+    description: 'One of the most recognizable works of Japanese art, this woodblock print depicts a towering wave threatening boats near Mount Fuji. It represents the power of nature and the resilience of humanity.',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/0/0a/The_Great_Wave_off_Kanagawa.jpg',
+    position: [-9.5, 2.5, 30],
+    rotation: [0, Math.PI / 2, 0]
+  },
+  {
+    id: 'art-13-wood-gothic',
+    title: 'American Gothic',
+    artist: 'Grant Wood',
+    year: '1930',
+    description: 'An iconic depiction of 20th-century rural America, featuring a farmer and his daughter standing before a Gothic Revival house. It has become a symbol of the American pioneer spirit and stoic endurance.',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/c/cc/Grant_Wood_-_American_Gothic_-_Google_Art_Project.jpg',
+    position: [-9.5, 2.5, 40],
+    rotation: [0, Math.PI / 2, 0]
+  },
+  {
+    id: 'art-14-van-gogh-cafe',
+    title: 'Cafe Terrace at Night',
+    artist: 'Vincent van Gogh',
+    year: '1888',
+    description: 'A vibrant nocturnal scene of a café in Arles. Van Gogh\'s use of contrasting colors and swirling stars creates a warm, inviting atmosphere under the southern French sky.',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/b/b7/Vincent_van_Gogh_-_Cafe_Terrace_at_Night_%281888%29.jpg',
+    position: [9.8, 2.5, 40],
+    rotation: [0, -Math.PI / 2, 0]
+  },
+  {
+    id: 'art-15-friedrich-wanderer',
+    title: 'Wanderer above the Sea of Fog',
+    artist: 'Caspar David Friedrich',
+    year: '1818',
+    description: 'A cornerstone of Romanticism, depicting a man standing on a rocky precipice overlooking a misty landscape. It encapsulates the sublime power of nature and the individual\'s place within it.',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/b/b9/Caspar_David_Friedrich_-_Wanderer_above_the_sea_of_fog.jpg',
+    position: [0, 2.5, 49.5],
+    rotation: [0, 0, 0]
+  },
+  {
+    id: 'art-16-whistler-mother',
+    title: "Whistler's Mother",
+    artist: 'James Abbott McNeill Whistler',
+    year: '1871',
+    description: 'Formally titled "Arrangement in Grey and Black No. 1," this portrait is an exercise in tonal harmony and composition, becoming one of the most famous American works outside of the United States.',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/1/1b/Whistlers_Mother.jpg',
+    position: [-9.5, 2.5, 60],
+    rotation: [0, Math.PI / 2, 0]
+  },
+  {
+    id: 'art-17-delacroix-liberty',
+    title: 'Liberty Leading the People',
+    artist: 'Eugène Delacroix',
+    year: '1830',
+    description: 'A monumental work commemorating the July Revolution of 1830. Liberty is personified as a woman leading the people over the barricades, symbolizing the spirit of freedom and defiance.',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/5/5d/Eug%C3%A8ne_Delacroix_-_Le_28_Juillet._La_Libert%C3%A9_guidant_le_peuple.jpg',
+    position: [9.8, 2.5, 60],
+    rotation: [0, -Math.PI / 2, 0]
+  },
+  {
+    id: 'art-18-michelangelo-adam',
+    title: 'The Creation of Adam',
+    artist: 'Michelangelo',
+    year: '1512',
+    description: 'A world-famous fresco from the Sistine Chapel ceiling, depicting the biblical narrative of God breathing life into Adam. The near-touching fingers are one of the most iconic images in art history.',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/5/5b/Michelangelo_-_Creation_of_Adam_%28cropped%29.jpg',
+    position: [0, 2.5, 69.5],
+    rotation: [0, 0, 0]
+  },
+  {
+    id: 'art-19-velazquez-meninas',
+    title: 'Las Meninas',
+    artist: 'Diego Velázquez',
+    year: '1656',
+    description: 'A complex and enigmatic composition that raises questions about reality and illusion. It depicts the Spanish Infanta Margaret Theresa surrounded by her entourage in the Royal Alcázar of Madrid.',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/3/31/Las_Meninas%2C_by_Diego_Vel%C3%A1zquez%2C_from_Prado_in_Google_Earth.jpg',
+    position: [-9.5, 2.5, 20],
+    rotation: [0, Math.PI / 2, 0]
+  },
+  {
+    id: 'art-20-millais-ophelia',
+    title: 'Ophelia',
+    artist: 'John Everett Millais',
+    year: '1851-1852',
+    description: 'A Pre-Raphaelite masterpiece depicting the death of Ophelia from Shakespeare\'s Hamlet. Millais used meticulous detail to capture the natural beauty and tragic pathos of the scene.',
+    url: 'https://upload.wikimedia.org/wikipedia/commons/9/94/John_Everett_Millais_-_Ophelia_-_Google_Art_Project.jpg',
+    position: [9.8, 2.5, 20],
     rotation: [0, -Math.PI / 2, 0]
   }
 ];
